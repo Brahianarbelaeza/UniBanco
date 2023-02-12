@@ -1,14 +1,15 @@
 package co.uniquindio.controller;
 import co.uniquindio.model.Cliente;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 
 public class UnibancoViewInicioController extends Controller{
@@ -49,43 +50,47 @@ public class UnibancoViewInicioController extends Controller{
     @FXML
     private TextField txtdireccion;
 
+    @FXML
+    private ComboBox<String> cmbTipoCuenta;
 
     private String nombre;
     private String cedula ;
     private String email ;
     private String apellido;
     private String direccion;
+    private String tipoCuenta;
+
+    private Cliente clienteSelected;
 
 
 
     private void cargarCamposTexto(){
 
-        String nombre = txtNombre.getText();
-        String cedula = txtCedula.getText();
-        String email = txtEmail.getText();
-        String apellido = txtApellido.getText();
-        String direccion = txtdireccion.getText();
+         nombre = txtNombre.getText();
+         cedula = txtCedula.getText();
+         email = txtEmail.getText();
+         apellido = txtApellido.getText();
+         direccion = txtdireccion.getText();
+         tipoCuenta = cmbTipoCuenta.getValue();
 
     }
-
-
-
-
 
 
     @FXML
     void actualizarCliente(ActionEvent event) {
 
+        cargarCamposTexto();
+        Cliente clienteNuevo = new Cliente(nombre, apellido, cedula, direccion, email, tipoCuenta);
 
-
-
-        super.actualizarCliente();
+        super.actualizarCliente(clienteSelected, clienteNuevo);
+        limpiarCamposTexto();
+        actualizarTabla();
     }
 
     @FXML
     void crearCliente(ActionEvent event) {
         cargarCamposTexto();
-        Cliente cliente = new Cliente(nombre, apellido, cedula, direccion, email);
+        Cliente cliente = new Cliente(nombre, apellido, cedula, direccion, email, tipoCuenta);
         super.crearCliente(cliente);
         limpiarCamposTexto();
         actualizarTabla();
@@ -107,18 +112,19 @@ public class UnibancoViewInicioController extends Controller{
     @FXML
     void eliminarCliente(ActionEvent event) {
 
-       Cliente cliente = (Cliente) tblClientes.getSelectionModel().getSelectedItem();
-       txtNombre.setText(cliente.getNombre());
-       txtEmail.setText(cliente.getEmail());
-       txtdireccion.setText(cliente.getDireccion());
-       txtCedula.setText(cliente.getCedula());
-       txtApellido.setText(cliente.getApellido());
+        if(clienteSelected != null){
+            super.eliminarCliente(clienteSelected);
+            actualizarTabla();
+            limpiarCamposTexto();
+        }
 
     }
 
     @FXML
     void retirar(ActionEvent event) {
-        System.out.println("retirar");
+
+        super.retirar();
+
     }
 
     @FXML
@@ -127,27 +133,38 @@ public class UnibancoViewInicioController extends Controller{
     }
 
 
-
+    @FXML
     public void initialize() {
         this.colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colApellidos.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         this.colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        cmbTipoCuenta.getItems().addAll("Ahorros", "Corriente");
     }
 
-    private void getListaClientesData() {
 
-        listaClientes.clear();
-        listaClientes.addAll(super.getListaCliente());
-
-    }
 
     public void actualizarTabla(){
+        listaClientes.clear();
         tblClientes.getItems().clear();
-        getListaClientesData();
-        tblClientes.setItems(listaClientes);
+        super.getListaCliente().forEach(System.out::println);
+        listaClientes.addAll(super.getListaCliente());
+        tblClientes.getItems().addAll(listaClientes);
         tblClientes.refresh();
+    }
+
+    @FXML
+    void llenarCamposTexto(MouseEvent event) {
+        clienteSelected = tblClientes.getSelectionModel().getSelectedItem();
+        if(clienteSelected != null){
+            clienteSelected = (Cliente) tblClientes.getSelectionModel().getSelectedItem();
+            txtNombre.setText(clienteSelected.getNombre());
+            txtEmail.setText(clienteSelected.getEmail());
+            txtdireccion.setText(clienteSelected.getDireccion());
+            txtCedula.setText(clienteSelected.getCedula());
+            txtApellido.setText(clienteSelected.getApellido());
+        }
 
     }
 

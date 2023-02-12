@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -34,9 +35,9 @@ public class application extends Application {
         stage.show();
     }
 
-    public void actualizarCliente() {
+    public void actualizarCliente(Cliente clienteSelected, Cliente clienteNuevo) {
 
-        banco.actualizarCliente();
+        banco.actualizarCliente(clienteSelected, clienteNuevo);
     }
 
     public void crearCliente(Cliente cliente) {
@@ -45,5 +46,30 @@ public class application extends Application {
 
     public ArrayList<Cliente> getListaClientes() {
         return banco.getListaClientes();
+    }
+
+    public void eliminarCliente(Cliente clienteSelected) {
+        banco.eliminarCliente(clienteSelected);
+    }
+
+    public void retirar() {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/retirarView.fxml"));
+        AnchorPane pane = null;
+        try {
+            pane = loader.load();
+            Controller controller = loader.getController();
+            controller.setMain(this);
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void hacerRetiro(String cedula, double monto) {
+        banco.hacerRetiro(cedula, monto);
     }
 }

@@ -18,7 +18,13 @@ public class Banco {
         this.listaClientes = listaClientes;
     }
 
-    public void actualizarCliente() {
+    public void actualizarCliente(Cliente clienteSelected, Cliente clienteNuevo) {
+
+        clienteSelected.setNombre(clienteNuevo.getNombre());
+        clienteSelected.setApellido(clienteNuevo.getApellido());
+        clienteSelected.setCedula(clienteNuevo.getCedula());
+        clienteSelected.setDireccion(clienteNuevo.getDireccion());
+        clienteSelected.setEmail(clienteNuevo.getEmail());
 
 
     }
@@ -34,10 +40,30 @@ public class Banco {
 
         if(!flag) {
             listaClientes.add(cliente);
-            System.out.println("Se guardo el cliente");
         }else{
             System.out.println("Este cliente ya se guardo");
         }
 
+    }
+
+    public void eliminarCliente(Cliente clienteSelected) {
+      listaClientes.remove(clienteSelected);
+
+    }
+
+    public void hacerRetiro(String cedula, double monto) {
+        System.out.println("Retirando");
+        for (int i=0; i<listaClientes.size(); i++){
+            if(listaClientes.get(i).getCedula().equals(cedula)){
+                System.out.println("Encontrado");
+                if(listaClientes.get(i).getCuenta().getSaldo() >= monto) {
+                    listaClientes.get(i).getCuenta().setSaldo(listaClientes.get(i).getCuenta().getSaldo() - monto);
+                    System.out.println("Retiro exitoso");
+                }else{
+                    System.out.println("No tiene saldo suficiente");
+                }
+                break;
+            }
+        }
     }
 }

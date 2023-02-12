@@ -10,13 +10,20 @@ public class Cliente {
     private String direccion;
     private String email;
 
+    private Cuenta cuenta;
 
-    public Cliente(String nombre, String apellido, String cedula, String direccion, String email) {
+
+    public Cliente(String nombre, String apellido, String cedula, String direccion, String email, String tipoCuenta) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
         this.direccion = direccion;
         this.email = email;
+        if(tipoCuenta.equals("corriente")) {
+            this.cuenta = new CuentaCorriente(cedula, 0.0);
+        } else {
+            this.cuenta = new CuentaAhorros(cedula, 0.0);
+        }
     }
 
     public String getNombre() {
@@ -59,6 +66,15 @@ public class Cliente {
         this.email = email;
     }
 
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,5 +90,16 @@ public class Cliente {
 
     public boolean compararCliente(Cliente cliente) {
         return equals(cliente);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

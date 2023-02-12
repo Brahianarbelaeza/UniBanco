@@ -17,8 +17,8 @@ public abstract class Controller {
         this.main = main;
     }
 
-    public void actualizarCliente(){
-        main.actualizarCliente();
+    public void actualizarCliente(Cliente clienteSelected, Cliente clienteNuevo){
+        main.actualizarCliente(clienteSelected, clienteNuevo);
     }
 
     protected void crearCliente(Cliente cliente) {
@@ -28,5 +28,17 @@ public abstract class Controller {
 
     protected ArrayList<Cliente> getListaCliente() {
         return main.getListaClientes();
+    }
+
+    protected void eliminarCliente(Cliente clienteSelected) {
+        main.eliminarCliente(clienteSelected);
+    }
+
+    protected void retirar() {
+        main.retirar();
+    }
+
+    protected void hacerRetiro(String cedula, double monto) {
+        main.hacerRetiro(cedula, monto);
     }
 }
