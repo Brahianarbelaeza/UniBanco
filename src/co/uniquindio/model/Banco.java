@@ -1,10 +1,14 @@
 package co.uniquindio.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Banco {
 
     private ArrayList<Cliente> listaClientes;
+    private ArrayList<Empleado> listaEmpleados;
+    private ArrayList<Cuenta> listaCuentas;
+    private ArrayList<Transaccion> listaTransacciones;
 
     public Banco() {
         this.listaClientes = new ArrayList<>();
@@ -52,18 +56,18 @@ public class Banco {
     }
 
     public void hacerRetiro(String cedula, double monto) {
-        System.out.println("Retirando");
-        for (int i=0; i<listaClientes.size(); i++){
-            if(listaClientes.get(i).getCedula().equals(cedula)){
-                System.out.println("Encontrado");
-                if(listaClientes.get(i).getCuenta().getSaldo() >= monto) {
-                    listaClientes.get(i).getCuenta().setSaldo(listaClientes.get(i).getCuenta().getSaldo() - monto);
-                    System.out.println("Retiro exitoso");
-                }else{
-                    System.out.println("No tiene saldo suficiente");
-                }
-                break;
-            }
+        Cliente clienteEncontrado;
+        clienteEncontrado = listaClientes.stream().filter((x) -> cedula.equals(x.getCedula())).findFirst().get();
+        clienteEncontrado.getCuenta().getSaldo();
+        if (clienteEncontrado.getCuenta().getSaldo() >= monto) {
+            clienteEncontrado.getCuenta().setSaldo(clienteEncontrado.getCuenta().getSaldo() - monto);
+            Transaccion transaccion = new Transaccion(new Date(), ( TipoTransaccion.RETIRO));
+            transaccion.setEstado(Estado.EXITOSO);
+            listaTransacciones.add(transaccion);
+        } else {
+            Transaccion transaccion = new Transaccion(new Date(), ( TipoTransaccion.RETIRO));
+            transaccion.setEstado(Estado.FALLIDO);
+            listaTransacciones.add(transaccion);
         }
     }
 }
