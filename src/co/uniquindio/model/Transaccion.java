@@ -16,6 +16,10 @@ public class Transaccion {
         this.tipoTransaccion = tipoTransaccion;
     }
 
+
+
+
+
     public Estado getEstado() {
         return estado;
     }
