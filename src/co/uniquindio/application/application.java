@@ -50,6 +50,14 @@ public class application extends Application {
         return banco.getListaClientes();
     }
 
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
+    }
+
     public void eliminarCliente(Cliente clienteSelected) {
         banco.eliminarCliente(clienteSelected);
     }
@@ -74,4 +82,24 @@ public class application extends Application {
     public void hacerRetiro(String cedula, double monto) {
         banco.hacerRetiro(cedula, monto);
     }
-}
+
+    public void solicitarSaldo() {
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/consultaSaldo.fxml"));
+        AnchorPane pane = null;
+        try {
+            pane = loader.load();
+            Controller controller = loader.getController();
+            controller.setMain(this);
+            Scene scene = new Scene(pane);
+            stage2.setScene(scene);
+            stage2.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+
+        }
+        }
+        public void consultarSaldo(String cedula) {
+            banco.consultarSaldo(cedula);
+        }
+    }

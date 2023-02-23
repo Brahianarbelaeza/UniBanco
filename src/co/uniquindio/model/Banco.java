@@ -12,6 +12,7 @@ public class Banco {
 
     public Banco() {
         this.listaClientes = new ArrayList<>();
+        this.listaTransacciones = new ArrayList<>();
     }
 
     public ArrayList<Cliente> getListaClientes() {
@@ -93,6 +94,12 @@ public class Banco {
         }
         listaTransacciones.add(transaccion);
         System.out.println(transaccion.getEstado());
+
+    }
+    public void consultarSaldo(String cedula){
+
+        Transaccion transaccion = new Transaccion(new Date(), (TipoTransaccion.CONSULTA_SALDO));
+        transaccion.setEstado(Estado.EXITOSO);
 
     }
 

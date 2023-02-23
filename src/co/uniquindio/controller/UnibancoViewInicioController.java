@@ -129,7 +129,7 @@ public class UnibancoViewInicioController extends Controller{
 
     @FXML
     void solicitarSaldo(ActionEvent event) {
-        System.out.println("solicitarSaldo");
+        super.solicitarSaldo();
     }
 
 

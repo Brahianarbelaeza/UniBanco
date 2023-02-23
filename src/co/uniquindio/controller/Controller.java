@@ -5,7 +5,7 @@ import co.uniquindio.model.Cliente;
 
 import java.util.ArrayList;
 
-public abstract class Controller {
+public class Controller {
 
     private application main;
 
@@ -40,5 +40,11 @@ public abstract class Controller {
 
     protected void hacerRetiro(String cedula, double monto) {
         main.hacerRetiro(cedula, monto);
+    }
+    protected  void solicitarSaldo() {
+        main.solicitarSaldo();
+    }
+    protected void consultarSaldo(String cedula) {
+        main.consultarSaldo(cedula);
     }
 }
