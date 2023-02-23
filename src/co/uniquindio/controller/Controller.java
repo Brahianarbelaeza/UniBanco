@@ -37,8 +37,19 @@ public abstract class Controller {
     protected void retirar() {
         main.retirar();
     }
+    protected void depositar()  {
+        main.depositar();
 
+    }
     protected void hacerRetiro(String cedula, double monto) {
         main.hacerRetiro(cedula, monto);
     }
+
+    protected void anadirTransacciones(){
+        main.anadirTransacciiones();
+    }
+    protected void hacerDeposito(String cedula, double monto) {
+        main.hacerDeposito(cedula, monto);
+    }
+
 }

@@ -7,6 +7,11 @@ public class Transaccion {
     private Double valor;
     private Date fecha;
     private TipoTransaccion tipoTransaccion;
+
+    public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
+        this.tipoTransaccion = tipoTransaccion;
+    }
+
     private Cuenta tipoCuenta;
     private Estado estado;
 
