@@ -106,6 +106,7 @@ public class UnibancoViewInicioController extends Controller{
 
     @FXML
     void depositar(ActionEvent event) {
+        super.depositar();
         System.out.println("depositar");
     }
 

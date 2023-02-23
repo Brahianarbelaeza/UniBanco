@@ -7,6 +7,7 @@ import co.uniquindio.model.Cliente;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 
 
 public class application extends Application {
+
+
     private Banco banco;
 
     public static void main(String[] args) {
@@ -24,6 +27,9 @@ public class application extends Application {
 
     }
 
+    public Banco getBanco() {
+        return banco;
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -82,6 +88,31 @@ public class application extends Application {
     public void hacerRetiro(String cedula, double monto) {
         banco.hacerRetiro(cedula, monto);
     }
+
+    public void anadirTransacciiones (){
+        banco.anadirTransacciones();
+    }
+
+    public void depositar() {
+        Stage stage1 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/DepositarSaldo.fxml"));
+        AnchorPane pane = null;
+        try {
+            pane = loader.load();
+            Controller controller = loader.getController();
+            controller.setMain(this);
+            Scene scene1 = new Scene(pane);
+            stage1.setScene(scene1);
+            stage1.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void hacerDeposito(String cedula, double monto) {
+        banco.hacerDeposito(cedula, monto);
+    }
+}
 
     public void solicitarSaldo() {
         Stage stage2 = new Stage();
