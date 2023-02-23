@@ -20,7 +20,6 @@ public class DepositarController extends Controller{
     void depositar(ActionEvent event) {
 
         String cedula = txtCedula.getText();
-        anadirTransacciones();
         try {
 
             double monto = Double.parseDouble(txtMonto.getText());

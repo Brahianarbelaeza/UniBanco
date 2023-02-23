@@ -15,21 +15,6 @@ public class Banco {
         this.listaTransacciones = new ArrayList<>();
     }
 
-    public void anadirTransacciones(){
-
-        this.listaTransacciones = new ArrayList<>();
-
-        Transaccion transaccion = new Transaccion(new Date(12-03-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion1 = new Transaccion(new Date(13-04-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion2 = new Transaccion(new Date(16-06-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion3 = new Transaccion(new Date(18-07-2022), TipoTransaccion.DEPOSITO);
-        listaTransacciones.add(transaccion);
-        listaTransacciones.add(transaccion1);
-        listaTransacciones.add(transaccion2);
-        listaTransacciones.add(transaccion3);
-
-    }
-
 
 
     public ArrayList<Cliente> getListaClientes() {

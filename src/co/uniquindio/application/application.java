@@ -27,9 +27,7 @@ public class application extends Application {
 
     }
 
-    public Banco getBanco() {
-        return banco;
-    }
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -89,10 +87,6 @@ public class application extends Application {
         banco.hacerRetiro(cedula, monto);
     }
 
-    public void anadirTransacciiones (){
-        banco.anadirTransacciones();
-    }
-
     public void depositar() {
         Stage stage1 = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/DepositarSaldo.fxml"));
@@ -112,7 +106,7 @@ public class application extends Application {
     public void hacerDeposito(String cedula, double monto) {
         banco.hacerDeposito(cedula, monto);
     }
-}
+
 
     public void solicitarSaldo() {
         Stage stage2 = new Stage();

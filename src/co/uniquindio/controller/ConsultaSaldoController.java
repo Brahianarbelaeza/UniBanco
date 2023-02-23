@@ -12,6 +12,7 @@ public class ConsultaSaldoController extends Controller {
 
     @FXML
     private TextField txtSaldo;
+    @FXML
     void consultarSaldo(ActionEvent event) {
         String cedula = txtCedula.getText();
         try {
