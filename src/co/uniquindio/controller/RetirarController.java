@@ -17,6 +17,7 @@ public class RetirarController extends Controller{
 
         String cedula = txtCedula.getText();
         try {
+
             double monto = Double.parseDouble(txtMonto.getText());
             super.hacerRetiro(cedula, monto);
         } catch (NumberFormatException e) {
