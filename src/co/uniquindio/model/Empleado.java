@@ -1,6 +1,6 @@
 package co.uniquindio.model;
 
-public class Empleado {
+public class Empleado{
     private String nombre;
     private String apellido;
     private String cedula;

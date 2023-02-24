@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="307.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.controller.RetirarController">
    <children>
       <Label layoutX="185.0" layoutY="14.0" text="Retiro en unibanco">
@@ -31,7 +30,7 @@
       </Label>
       <TextField fx:id="txtCedula" layoutX="226.0" layoutY="83.0" prefHeight="25.0" prefWidth="281.0" promptText="Ingrese su cedula..." />
       <TextField fx:id="txtMonto" layoutX="226.0" layoutY="143.0" prefHeight="25.0" prefWidth="281.0" promptText="Ingrese el moto a retirar" />
-      <TextField disable="true" editable="false" layoutX="226.0" layoutY="203.0" prefHeight="25.0" prefWidth="281.0" />
+      <TextField fx:id="txtMostrarsaldo" disable="true" editable="false" layoutX="226.0" layoutY="203.0" prefHeight="25.0" prefWidth="281.0" />
       <Button layoutX="239.0" layoutY="252.0" mnemonicParsing="false" onAction="#retirar" text="Retirar" />
    </children>
 </AnchorPane>

@@ -1,7 +1,5 @@
 package co.uniquindio.model;
 
-import com.sun.javafx.UnmodifiableArrayList;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,34 +10,9 @@ public class Banco {
     private ArrayList<Cuenta> listaCuentas;
     private ArrayList<Transaccion> listaTransacciones;
 
-
-    public Banco() {this.listaClientes = new ArrayList<>();
-/*
-        Cliente cliente = new Cliente("Ale","Guzmán","123","Calle 10","aleja@gmail.com","Ahorros");
-        Cliente cliente1 = new Cliente("Maria A","Ríos","234","Via M","mariale@gmail.com","Corriente");
-        Cliente cliente2 = new Cliente("Juanse","Vega","696","Av centenarii","juanse@gmail.com","Ahorros");
-        Cliente cliente3 = new Cliente("Daniel","Jimenez","880","Diagonal 64","dani@gmail.com","Corriente");
-
-        listaClientes.add(cliente);
-        listaClientes.add(cliente1);
-        listaClientes.add(cliente2);
-        listaClientes.add(cliente3);
-*/
-    }
-
-    public void anadirTransacciones(){
-
+    public Banco() {
+        this.listaClientes = new ArrayList<>();
         this.listaTransacciones = new ArrayList<>();
-
-        Transaccion transaccion = new Transaccion(new Date(12-03-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion1 = new Transaccion(new Date(13-04-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion2 = new Transaccion(new Date(16-06-2022), TipoTransaccion.DEPOSITO);
-        Transaccion transaccion3 = new Transaccion(new Date(18-07-2022), TipoTransaccion.DEPOSITO);
-        listaTransacciones.add(transaccion);
-        listaTransacciones.add(transaccion1);
-        listaTransacciones.add(transaccion2);
-        listaTransacciones.add(transaccion3);
-
     }
 
 
@@ -123,6 +96,12 @@ public class Banco {
         }
         listaTransacciones.add(transaccion);
         System.out.println(transaccion.getEstado());
+
+    }
+    public void consultarSaldo(String cedula){
+
+        Transaccion transaccion = new Transaccion(new Date(), (TipoTransaccion.CONSULTA_SALDO));
+        transaccion.setEstado(Estado.EXITOSO);
 
     }
 

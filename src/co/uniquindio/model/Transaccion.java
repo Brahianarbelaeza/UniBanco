@@ -21,9 +21,16 @@ public class Transaccion {
         this.tipoTransaccion = tipoTransaccion;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Transaccion{" +
+                "valor=" + valor +
+                ", fecha=" + fecha +
+                ", tipoTransaccion=" + tipoTransaccion +
+                ", tipoCuenta=" + tipoCuenta +
+                ", estado=" + estado +
+                '}';
+    }
 
     public Estado getEstado() {
         return estado;
